@@ -63,7 +63,7 @@ def write_stations_csv_file(config):
     with open(stations_json_full_path, "r") as f:
         j = json.load(f)
 
-    # "(-122.3493,47.6205)",Space Needle,400 Broad St,"Seattle, WA 98109",Public,24 hours,Space needle,https://www.spaceneedle.com/,0,1,2,J1772
+    # "(-122.3493,47.6205)",Space Needle,400 Broad St,"Seattle, WA 98109",24 hours,Space needle,https://www.spaceneedle.com/,0,1,2,J1772
     logging.info(f"writing ev stations csv to '{stations_csv_full_path}'")
     with open(stations_csv_full_path, "w") as f:
         writer = csv.writer(f, delimiter="\t")
