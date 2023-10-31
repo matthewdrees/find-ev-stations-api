@@ -8,12 +8,7 @@ import json
 import requests
 import os
 
-
-def get_config():
-    with open("config.json", "r") as f:
-        config = json.load(f)
-    return config
-
+from config import get_config
 
 stations_json_full_path = "/tmp/stations.json"
 stations_csv_full_path = "/tmp/stations.csv"

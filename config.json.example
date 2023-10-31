@@ -1,3 +1,6 @@
 {
-    "nrel key": "YOUR KEY HERE"
+    "nrel key": "",
+    "my key" : "",
+    "db_user": "",
+    "db_password": ""
 }

@@ -1,20 +1,22 @@
 import psycopg2
 
+from config import get_config
+import model
+
 from fastapi import FastAPI, HTTPException, status, Security
 from fastapi.security import (
     APIKeyHeader,
 )
 
-from pydantic import BaseModel
-
-conn = psycopg2.connect("dbname=postgres user=postgres")
+config = get_config()
 
 app = FastAPI()
 
+conn = psycopg2.connect(f"dbname={config['db_name']} user={config['db_user']}")
+
 api_key_header = APIKeyHeader(name="X-API-Key")
 
-
-api_keys = ["dude"]
+api_keys = [config["my key"]]
 
 
 def get_api_key(api_key_header: str = Security(api_key_header)) -> str:
@@ -24,27 +26,6 @@ def get_api_key(api_key_header: str = Security(api_key_header)) -> str:
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Invalid or missing API Key",
     )
-
-
-@app.get("/protected")
-def protected_route(api_key: str = Security(get_api_key)):
-    # Process the request for authenticated users
-    return {"message": "Access granted!"}
-
-
-class Station(BaseModel):
-    longitude: float
-    latitude: float
-    name: str
-    address: str
-    city_state_zip: str
-    access_days_time: str
-    ev_network: str
-    ev_network_web: str
-    dc_fast_chargers: int
-    ev_level_1_chargers: int
-    ev_level_2_chargers: int
-    ev_connector_types: str
 
 
 @app.get("/stations/nearest")
@@ -70,7 +51,7 @@ async def stations_nearest(
     for s in station_tuples:
         longitude, latitude = eval(s[0])
         stations.append(
-            Station(
+            model.Station(
                 longitude=longitude,
                 latitude=latitude,
                 name=s[1],
