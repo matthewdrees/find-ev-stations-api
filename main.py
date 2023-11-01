@@ -16,7 +16,7 @@ conn = psycopg2.connect(f"dbname={config['db_name']} user={config['db_user']}")
 
 api_key_header = APIKeyHeader(name="X-API-Key")
 
-api_keys = [config["my key"]]
+api_keys = [config["my_key"]]
 
 
 def get_api_key(api_key_header: str = Security(api_key_header)) -> str:

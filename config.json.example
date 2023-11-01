@@ -1,6 +1,6 @@
 {
-    "nrel key": "",
-    "my key" : "",
-    "db_user": "",
-    "db_password": ""
+    "nrel_key": "",
+    "my_key" : "",
+    "db_name": "postgres",
+    "db_user": "postgres"
 }

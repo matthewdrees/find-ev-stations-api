@@ -19,7 +19,7 @@ def fetch_nrel_stations_to_file(config):
     logging.info(f"fetching ev stations from '{url}' ... ")
     params = {
         "format": "json",
-        "api_key": config["nrel key"],
+        "api_key": config["nrel_key"],
         "status": "E",
         "access": "public",
         "fuel_type": "ELEC",
